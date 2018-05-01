@@ -1,4 +1,3 @@
-
 package com.book.app.adapter;
 
 import android.app.Activity;

@@ -26,21 +26,20 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="60dp"
             android:layout_gravity="center_horizontal"
+            android:layout_margin="60dp"
             android:text="Organize as letras"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Display1"
             android:textColor="#FFFF00" />
-
 
 
         <LinearLayout
             android:id="@+id/usuarios_select"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center|bottom"
             android:layout_marginEnd="20dp"
             android:layout_marginStart="20dp"
-            android:layout_gravity="center|bottom"
             android:layout_marginTop="-60dp"
             android:orientation="horizontal">
 
@@ -58,8 +57,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:background="#000000">
+                    android:background="#000000"
+                    android:orientation="vertical">
 
 
                     <ImageView
@@ -75,8 +74,8 @@
                         android:layout_gravity="center"
                         android:layout_marginTop="10dp"
                         android:text="ANA"
-                        android:textSize="20sp"
-                        android:textColor="#FFFFFF" />
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp" />
 
                 </LinearLayout>
 

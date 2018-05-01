@@ -44,6 +44,9 @@ import java.util.TimerTask;
 
 public class ResponderQuiz extends AppCompatActivity implements View.OnClickListener {
 
+    public static final String CATEGORIA_EXTRA = "categoriaExtra";
+    private static int tileWidth = 0;
+    private static TextView rootTextView;
     private String shuffledWord;
     private int length;
     private LinearLayout ll;
@@ -56,7 +59,6 @@ public class ResponderQuiz extends AppCompatActivity implements View.OnClickList
     private int[] indexArray = new int[5];
     private int arrayLength;
     private int index = 1;
-    public static final String CATEGORIA_EXTRA = "categoriaExtra";
     private int categoria;
     private UsuarioEscolhido usuarioEscolhidoPreferences;
     private EstadoUsuario estadoUsuario;
@@ -68,8 +70,6 @@ public class ResponderQuiz extends AppCompatActivity implements View.OnClickList
     private long time = System.currentTimeMillis();
     // private TextView txtTimer;
     private int count = 0;
-    private static int tileWidth = 0;
-    private static TextView rootTextView;
     private boolean isTablet;
     private ImageButton btnApagar;
 

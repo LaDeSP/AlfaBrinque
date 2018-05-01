@@ -13,8 +13,8 @@
         android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="30dp"
-        tools:src="@drawable/avatar_1"
-        android:contentDescription="@string/avatar_usu_rio" />
+        android:contentDescription="@string/avatar_usu_rio"
+        tools:src="@drawable/avatar_1" />
 
 
     <EditText

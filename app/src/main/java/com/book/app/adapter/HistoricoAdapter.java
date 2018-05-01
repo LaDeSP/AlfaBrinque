@@ -21,9 +21,9 @@ import java.util.Locale;
 public class HistoricoAdapter extends RecyclerView.Adapter<HistoricoAdapter.HistoricoViewHolder> implements View.OnClickListener {
 
     HistoricoUsuario historicoUsuario;
-    private ArrayList<HistoricoUsuario> mUsuariosList;
     LayoutInflater inflater;
     View itemView;
+    private ArrayList<HistoricoUsuario> mUsuariosList;
     private int lastPosition = -1;
     private OnEventClickListener mListener;
     private DateFormat df = new SimpleDateFormat("dd MMM", new Locale("pt", "br"));
@@ -107,17 +107,17 @@ public class HistoricoAdapter extends RecyclerView.Adapter<HistoricoAdapter.Hist
 
     }
 
-    public interface OnEventClickListener {
-        void onEventClick(View v, int position, HistoricoUsuario historicoUsuario);
-    }
-
-
     private void setAnimation(View viewToAnimate, int position) {
         if (position > lastPosition) {
             Animation animation = AnimationUtils.loadAnimation(itemView.getContext(), android.R.anim.slide_in_left);
             viewToAnimate.startAnimation(animation);
             lastPosition = position;
         }
+    }
+
+
+    public interface OnEventClickListener {
+        void onEventClick(View v, int position, HistoricoUsuario historicoUsuario);
     }
 
     public static class HistoricoViewHolder extends RecyclerView.ViewHolder {

@@ -9,14 +9,14 @@
         android:id="@+id/img_alimentos"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:src="@drawable/melancia"
-        android:contentDescription="@string/imagem_da_categoria_ovelha" />
+        android:contentDescription="@string/imagem_da_categoria_ovelha"
+        android:src="@drawable/melancia" />
 
     <com.book.app.util.CustomTextView
         android:id="@+id/txt_alimentos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/alimentos"
-        android:textSize="40sp"/>
+        android:textSize="40sp" />
 
 </LinearLayout>

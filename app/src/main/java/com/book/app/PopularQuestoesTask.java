@@ -8,8 +8,8 @@ import com.book.app.data.AppDAO;
 
 public class PopularQuestoesTask extends AsyncTask<Context, Void, Integer> {
 
-    private AppDAO dao;
     private static final String MY_TAG = "insertTask";
+    private AppDAO dao;
 
     public PopularQuestoesTask() {
     }

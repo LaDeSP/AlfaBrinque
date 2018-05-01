@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.book.app.R;
 import com.book.app.ResponderQuiz;
@@ -20,14 +19,12 @@ public class AlimentoFragment extends Fragment implements View.OnClickListener {
 
     private TextView txtAlimentos;
 
-    public static AlimentoFragment newInstance() {
-        return new AlimentoFragment();
-    }
-
-
     public AlimentoFragment() {
     }
 
+    public static AlimentoFragment newInstance() {
+        return new AlimentoFragment();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

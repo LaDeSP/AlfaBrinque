@@ -19,20 +19,16 @@ import java.util.Date;
 
 public class AppDAO {
 
-    private static SQLiteDatabase mDatabase;
-    DBHelper mHelper;
+    public static final String[] PROJECTION_USUARIO = {
+            DataContract.UserContract.USUARIO_COLUNA_ID,
+            DataContract.UserContract.USUARIO_AVATAR_URL,
+            DataContract.UserContract.USUARIO_COLUNA_APELIDO
+    };
     private static final String DB_TAG = "database";
-    private Context mContext;
-
+    private static SQLiteDatabase mDatabase;
     private static AppDAO daoInstance;
-
-    public static AppDAO newInstance(Context context) {
-        if (daoInstance == null) {
-            daoInstance = new AppDAO(context.getApplicationContext());
-        }
-
-        return daoInstance;
-    }
+    DBHelper mHelper;
+    private Context mContext;
 
     private AppDAO(Context context) {
         this.mContext = context;
@@ -40,23 +36,12 @@ public class AppDAO {
         mDatabase = mHelper.getWritableDatabase();
     }
 
-    public static final String[] PROJECTION_USUARIO = {
-            DataContract.UserContract.USUARIO_COLUNA_ID,
-            DataContract.UserContract.USUARIO_AVATAR_URL,
-            DataContract.UserContract.USUARIO_COLUNA_APELIDO
-    };
+    public static AppDAO newInstance(Context context) {
+        if (daoInstance == null) {
+            daoInstance = new AppDAO(context.getApplicationContext());
+        }
 
-    public int novoUsuario(Usuario usuario) {
-
-        ContentValues values = new ContentValues();
-        int returnedId = -1;
-
-        values.put(DataContract.UserContract.USUARIO_COLUNA_APELIDO, usuario.getApelido());
-        values.put(DataContract.UserContract.USUARIO_AVATAR_URL, usuario.getAvatarUrl());
-
-        returnedId = (int) mDatabase.insert(DataContract.UserContract.NOME_TABELA_USUARIO, null, values);
-        usuario.setUsuarioId(returnedId);
-        return returnedId;
+        return daoInstance;
     }
 
     private static int novaCategoria(Categoria categoria) {
@@ -72,6 +57,77 @@ public class AppDAO {
         return returnedId;
     }
 
+    private static int adicionarQuestao(Questao questao) {
+
+        ContentValues values = new ContentValues();
+        int returnedId = -1;
+
+        values.put(DataContract.QuestionContract.QUESTAO_COLUNA_CHAVE_CATEGORIA, questao.getChaveCatogoria());
+        values.put(DataContract.QuestionContract.QUESTAO_IMAGEM_URL, questao.getImagemUrl());
+        values.put(DataContract.QuestionContract.QUESTAO_RESPOSTA_CERTA, questao.getRespostaCerta());
+        values.put(DataContract.QuestionContract.QUESTAO_ORDEM, questao.getOrdem());
+        values.put(DataContract.QuestionContract.QUESTAO_SOM_URL, questao.getSomUrl());
+
+
+        returnedId = (int) mDatabase.insert(DataContract.QuestionContract.NOME_TABELA_QUESTAO, null, values);
+        questao.setQuestaoID(returnedId);
+        return returnedId;
+    }
+
+    private static Questao questaoFromCursor(Cursor cursor) {
+        int id = cursor.getInt(cursor.getColumnIndex(DataContract.QuestionContract.QUESTAO_COLUNA_ID));
+        int categoria = cursor.getInt(cursor.getColumnIndex(DataContract.QuestionContract.QUESTAO_COLUNA_CHAVE_CATEGORIA));
+        int imagemUrl = cursor.getInt(cursor.getColumnIndex(DataContract.QuestionContract.QUESTAO_IMAGEM_URL));
+        String respostaCerta = cursor.getString(cursor.getColumnIndex(DataContract.QuestionContract.QUESTAO_RESPOSTA_CERTA));
+        int ordem = cursor.getInt(cursor.getColumnIndex(DataContract.QuestionContract.QUESTAO_ORDEM));
+        String somUrl = cursor.getString(cursor.getColumnIndex(DataContract.QuestionContract.QUESTAO_SOM_URL));
+
+
+        return new Questao(id, categoria, imagemUrl, respostaCerta, ordem, somUrl);
+    }
+
+    private static HistoricoUsuario historicoUsuarioFromCursor(Cursor cursor) {
+        int id = cursor.getInt(cursor.getColumnIndex(DataContract.UserSessionContract.SESSAO_COLUNA_ID));
+        long dataCriacao = cursor.getLong(cursor.getColumnIndex(DataContract.UserSessionContract.SESSAO_DATA_CRIACAO));
+        int numeroQuestoes = cursor.getInt(cursor.getColumnIndex(DataContract.UserSessionContract.SESSAO_NUMERO_QUESTOES));
+        int numeroAcertos = cursor.getInt(cursor.getColumnIndex(DataContract.UserSessionContract.SESSAO_NUMERO_ACERTOS));
+        int numeroErros = cursor.getInt(cursor.getColumnIndex(DataContract.UserSessionContract.SESSAO_NUMERO_ERROS));
+        int chaveCategoria = cursor.getInt(cursor.getColumnIndex(DataContract.UserSessionContract.SESSAO_CHAVE_CATEGORIA));
+        int chaveUsuario = cursor.getInt(cursor.getColumnIndex(DataContract.UserSessionContract.SESSAO_CHAVE_USUARIO));
+
+        return new HistoricoUsuario(id, (dataCriacao != -1 ? new Date(dataCriacao) : null), numeroQuestoes, numeroAcertos, numeroErros, chaveCategoria, chaveUsuario);
+    }
+
+    private static EstadoUsuario estadoUsuarioFromCursor(Cursor cursor) {
+        int id = cursor.getInt(cursor.getColumnIndex(DataContract.UserStateContract.ESTADO_USUARIO_COLUNA_ID));
+        int chaveUsuario = cursor.getInt(cursor.getColumnIndex(DataContract.UserStateContract.ESTADO_USUARIO_CHAVE_USUARIO));
+        int chaveQuestao = cursor.getInt(cursor.getColumnIndex(DataContract.UserStateContract.ESTADO_USUARIO_CHAVE_QUESTAO));
+        int respondido = cursor.getInt(cursor.getColumnIndex(DataContract.UserStateContract.ESTADO_USUARIO_RESPONDIDO));
+        int status = cursor.getInt(cursor.getColumnIndex(DataContract.UserStateContract.ESTADO_USUARIO_STATUS));
+
+        return new EstadoUsuario(id, chaveUsuario, chaveQuestao, respondido, status);
+    }
+
+    private static Usuario usuarioFromCursor(Cursor cursor) {
+        int id = cursor.getInt(cursor.getColumnIndex(DataContract.UserContract.USUARIO_COLUNA_ID));
+        String apelido = cursor.getString(cursor.getColumnIndex(DataContract.UserContract.USUARIO_COLUNA_APELIDO));
+        int avatarUrl = cursor.getInt(cursor.getColumnIndex(DataContract.UserContract.USUARIO_AVATAR_URL));
+
+        return new Usuario(id, apelido, avatarUrl);
+    }
+
+    public int novoUsuario(Usuario usuario) {
+
+        ContentValues values = new ContentValues();
+        int returnedId = -1;
+
+        values.put(DataContract.UserContract.USUARIO_COLUNA_APELIDO, usuario.getApelido());
+        values.put(DataContract.UserContract.USUARIO_AVATAR_URL, usuario.getAvatarUrl());
+
+        returnedId = (int) mDatabase.insert(DataContract.UserContract.NOME_TABELA_USUARIO, null, values);
+        usuario.setUsuarioId(returnedId);
+        return returnedId;
+    }
 
     public Questao getQuestaoById(int categoria, int ordem) {
 
@@ -98,7 +154,6 @@ public class AppDAO {
         }
 
     }
-
 
     public Usuario getUsuarioByPosition(int index) {
 
@@ -133,25 +188,6 @@ public class AppDAO {
             Log.i(DB_TAG, "CATEGORIAS ADICIONADAS COM SUCESSO!");
         }
     }
-
-
-    private static int adicionarQuestao(Questao questao) {
-
-        ContentValues values = new ContentValues();
-        int returnedId = -1;
-
-        values.put(DataContract.QuestionContract.QUESTAO_COLUNA_CHAVE_CATEGORIA, questao.getChaveCatogoria());
-        values.put(DataContract.QuestionContract.QUESTAO_IMAGEM_URL, questao.getImagemUrl());
-        values.put(DataContract.QuestionContract.QUESTAO_RESPOSTA_CERTA, questao.getRespostaCerta());
-        values.put(DataContract.QuestionContract.QUESTAO_ORDEM, questao.getOrdem());
-        values.put(DataContract.QuestionContract.QUESTAO_SOM_URL, questao.getSomUrl());
-
-
-        returnedId = (int) mDatabase.insert(DataContract.QuestionContract.NOME_TABELA_QUESTAO, null, values);
-        questao.setQuestaoID(returnedId);
-        return returnedId;
-    }
-
 
     public int popularQuestoesAnimais() {
         popularCategorias();
@@ -313,7 +349,6 @@ public class AppDAO {
         return returnedId;
     }
 
-
     public int inserirHistoricoUsuario(HistoricoUsuario historicoUsuario) {
 
         ContentValues values = new ContentValues();
@@ -469,50 +504,6 @@ public class AppDAO {
             }
         }
 
-    }
-
-
-    private static Questao questaoFromCursor(Cursor cursor) {
-        int id = cursor.getInt(cursor.getColumnIndex(DataContract.QuestionContract.QUESTAO_COLUNA_ID));
-        int categoria = cursor.getInt(cursor.getColumnIndex(DataContract.QuestionContract.QUESTAO_COLUNA_CHAVE_CATEGORIA));
-        int imagemUrl = cursor.getInt(cursor.getColumnIndex(DataContract.QuestionContract.QUESTAO_IMAGEM_URL));
-        String respostaCerta = cursor.getString(cursor.getColumnIndex(DataContract.QuestionContract.QUESTAO_RESPOSTA_CERTA));
-        int ordem = cursor.getInt(cursor.getColumnIndex(DataContract.QuestionContract.QUESTAO_ORDEM));
-        String somUrl = cursor.getString(cursor.getColumnIndex(DataContract.QuestionContract.QUESTAO_SOM_URL));
-
-
-        return new Questao(id, categoria, imagemUrl, respostaCerta, ordem, somUrl);
-    }
-
-    private static HistoricoUsuario historicoUsuarioFromCursor(Cursor cursor) {
-        int id = cursor.getInt(cursor.getColumnIndex(DataContract.UserSessionContract.SESSAO_COLUNA_ID));
-        long dataCriacao = cursor.getLong(cursor.getColumnIndex(DataContract.UserSessionContract.SESSAO_DATA_CRIACAO));
-        int numeroQuestoes = cursor.getInt(cursor.getColumnIndex(DataContract.UserSessionContract.SESSAO_NUMERO_QUESTOES));
-        int numeroAcertos = cursor.getInt(cursor.getColumnIndex(DataContract.UserSessionContract.SESSAO_NUMERO_ACERTOS));
-        int numeroErros = cursor.getInt(cursor.getColumnIndex(DataContract.UserSessionContract.SESSAO_NUMERO_ERROS));
-        int chaveCategoria = cursor.getInt(cursor.getColumnIndex(DataContract.UserSessionContract.SESSAO_CHAVE_CATEGORIA));
-        int chaveUsuario = cursor.getInt(cursor.getColumnIndex(DataContract.UserSessionContract.SESSAO_CHAVE_USUARIO));
-
-        return new HistoricoUsuario(id, (dataCriacao != -1 ? new Date(dataCriacao) : null), numeroQuestoes, numeroAcertos, numeroErros, chaveCategoria, chaveUsuario);
-    }
-
-
-    private static EstadoUsuario estadoUsuarioFromCursor(Cursor cursor) {
-        int id = cursor.getInt(cursor.getColumnIndex(DataContract.UserStateContract.ESTADO_USUARIO_COLUNA_ID));
-        int chaveUsuario = cursor.getInt(cursor.getColumnIndex(DataContract.UserStateContract.ESTADO_USUARIO_CHAVE_USUARIO));
-        int chaveQuestao = cursor.getInt(cursor.getColumnIndex(DataContract.UserStateContract.ESTADO_USUARIO_CHAVE_QUESTAO));
-        int respondido = cursor.getInt(cursor.getColumnIndex(DataContract.UserStateContract.ESTADO_USUARIO_RESPONDIDO));
-        int status = cursor.getInt(cursor.getColumnIndex(DataContract.UserStateContract.ESTADO_USUARIO_STATUS));
-
-        return new EstadoUsuario(id, chaveUsuario, chaveQuestao, respondido, status);
-    }
-
-    private static Usuario usuarioFromCursor(Cursor cursor) {
-        int id = cursor.getInt(cursor.getColumnIndex(DataContract.UserContract.USUARIO_COLUNA_ID));
-        String apelido = cursor.getString(cursor.getColumnIndex(DataContract.UserContract.USUARIO_COLUNA_APELIDO));
-        int avatarUrl = cursor.getInt(cursor.getColumnIndex(DataContract.UserContract.USUARIO_AVATAR_URL));
-
-        return new Usuario(id, apelido, avatarUrl);
     }
 
 

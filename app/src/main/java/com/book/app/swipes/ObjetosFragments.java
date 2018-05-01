@@ -19,13 +19,12 @@ public class ObjetosFragments extends Fragment implements View.OnClickListener {
 
     private TextView txtObjetos;
 
-    public static ObjetosFragments newInstance() {
-        return new ObjetosFragments();
-    }
-
     public ObjetosFragments() {
     }
 
+    public static ObjetosFragments newInstance() {
+        return new ObjetosFragments();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

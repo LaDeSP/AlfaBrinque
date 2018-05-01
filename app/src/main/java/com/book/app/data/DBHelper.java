@@ -14,24 +14,18 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final int DB_VERSION = 48;
     private static final String SEPARADOR = ", ";
     private static final String TAG = "db_tag";
-    private Context mContext;
-
     private static final String SQL_DROP_TABLE_USUARIO = "DROP TABLE IF EXISTS " + DataContract.UserContract.NOME_TABELA_USUARIO;
     private static final String SQL_DROP_TABLE_CATEGORIA = "DROP TABLE IF EXISTS " + DataContract.CategoryContract.NOME_TABELA_CATEGORIA;
     private static final String SQL_DROP_TABLE_QUESTAO = "DROP TABLE IF EXISTS " + DataContract.QuestionContract.NOME_TABELA_QUESTAO;
     private static final String SQL_DROP_TABLE_ESTADO_USUARIO = "DROP TABLE IF EXISTS " + DataContract.UserStateContract.NOME_TABELA_ESTADO_USUARIO;
     private static final String SQL_DROP_TABLE_SESSAO = "DROP TABLE IF EXISTS " + DataContract.UserSessionContract.NOME_TABELA_SESSAO;
-
     private static final String SQL_CREATE_TABLE_USUARIO = "CREATE TABLE " + DataContract.UserContract.NOME_TABELA_USUARIO + "(" +
             DataContract.UserContract.USUARIO_COLUNA_ID + " INTEGER PRIMARY KEY AUTOINCREMENT" + SEPARADOR +
             DataContract.UserContract.USUARIO_COLUNA_APELIDO + " TEXT NOT NULL" + SEPARADOR +
             DataContract.UserContract.USUARIO_AVATAR_URL + " INTEGER NOT NULL" + ");";
-
     private static final String SQL_CREATE_TABLE_CATEGORIA = "CREATE TABLE " + DataContract.CategoryContract.NOME_TABELA_CATEGORIA + "(" +
             DataContract.CategoryContract.CATEGORIA_COLUNA_ID + " INTEGER PRIMARY KEY" + SEPARADOR +
             DataContract.CategoryContract.CATEGORIA_COLUNA_DESCRICAO + " TEXT NOT NULL" + ");";
-
-
     private static final String SQL_CREATE_TABLE_QUESTAO = "CREATE TABLE " + DataContract.QuestionContract.NOME_TABELA_QUESTAO + "(" +
             DataContract.QuestionContract.QUESTAO_COLUNA_ID + " INTEGER PRIMARY KEY AUTOINCREMENT" + SEPARADOR +
             DataContract.QuestionContract.QUESTAO_COLUNA_CHAVE_CATEGORIA + " INTEGER NOT NULL" + SEPARADOR +
@@ -43,7 +37,6 @@ public class DBHelper extends SQLiteOpenHelper {
             " FOREIGN KEY (" + DataContract.QuestionContract.QUESTAO_COLUNA_CHAVE_CATEGORIA + ") REFERENCES " +
             DataContract.CategoryContract.NOME_TABELA_CATEGORIA + " (" + DataContract.CategoryContract.CATEGORIA_COLUNA_ID +
             "))";
-
     private static final String SQL_CREATE_TABLE_ESTADO_USUARIO = "CREATE TABLE " + DataContract.UserStateContract.NOME_TABELA_ESTADO_USUARIO + "(" +
             DataContract.UserStateContract.ESTADO_USUARIO_COLUNA_ID + " INTEGER PRIMARY KEY AUTOINCREMENT" + SEPARADOR +
             DataContract.UserStateContract.ESTADO_USUARIO_CHAVE_USUARIO + " INTEGER NOT NULL" + SEPARADOR +
@@ -57,7 +50,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
             "FOREIGN KEY (" + DataContract.UserStateContract.ESTADO_USUARIO_CHAVE_QUESTAO + ") REFERENCES " +
             DataContract.QuestionContract.NOME_TABELA_QUESTAO + " (" + DataContract.QuestionContract.QUESTAO_COLUNA_ID + "));";
-
     private static final String SQL_CREATE_TABLE_SESSAO = "CREATE TABLE " + DataContract.UserSessionContract.NOME_TABELA_SESSAO + "(" +
             DataContract.UserSessionContract.SESSAO_COLUNA_ID + " INTEGER PRIMARY KEY AUTOINCREMENT" + SEPARADOR +
             DataContract.UserSessionContract.SESSAO_DATA_CRIACAO + " INTEGER NOT NULL" + SEPARADOR +
@@ -74,9 +66,13 @@ public class DBHelper extends SQLiteOpenHelper {
 
             "FOREIGN KEY (" + DataContract.UserSessionContract.SESSAO_CHAVE_USUARIO + ") REFERENCES " +
             DataContract.UserContract.NOME_TABELA_USUARIO + " (" + DataContract.UserContract.USUARIO_COLUNA_ID + "));";
-
-
     private static DBHelper instance;
+    private Context mContext;
+
+    private DBHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+        super(context, name, factory, version);
+        this.mContext = context;
+    }
 
     public static DBHelper newInstance(Context context) {
 
@@ -86,13 +82,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
         return instance;
     }
-
-
-    private DBHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, name, factory, version);
-        this.mContext = context;
-    }
-
 
     @Override
     public void onCreate(SQLiteDatabase db) {

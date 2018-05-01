@@ -13,12 +13,12 @@ import com.book.app.pojo.Usuario;
 
 public class TelaAdicionarUsuario extends AppCompatActivity {
 
+    private static final String UNDERSCORE_SEP = "_";
     private EditText edtNovoUsuario;
     private ImageView imgAvatar;
     private int userCodeExtra;
     private String avatar;
     private int avatarUrl;
-    private static final String UNDERSCORE_SEP = "_";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

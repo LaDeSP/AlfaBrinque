@@ -1,9 +1,5 @@
 <resources>
     <string name="app_name">AlfaBrinque</string>
-    <string name="txtIniciarJogo">Iniciar</string>
-    <string name="title_activity_categoria">Categoria</string>
-    <string name="action_settings">Settings</string>
-    <string name="section_format">Hello World from section: %1$d</string>
 
     <string-array name="categorias">
         <item name="animais">Animais</item>
@@ -11,7 +7,6 @@
         <item name="objetos">Objetos</item>
     </string-array>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="alimentos">Alimentos</string>
     <string name="imagem_da_categoria_ovelha">Imagem da categoria ovelha</string>
     <string name="animais">Animais</string>
@@ -24,11 +19,6 @@
     <string name="imagem_quiz">Imagem Quiz</string>
 
 
-    <array name="imagensAnimais">
-        <item>@drawable/avatar_2</item>
-        <item>@drawable/avatar_1</item>
-        <item>@drawable/avatar_3</item>
-    </array>
     <string name="title_activity_questoes_respondidas_sucesso">QuestoesRespondidasSucesso</string>
     <string name="sucesso_icone">Sucesso Ícone</string>
     <string name="title_activity_tela_adicionar_usuario">Adicione um novo jogador</string>
@@ -41,9 +31,6 @@
     <string name="bot_o_iniciar">botão iniciar</string>
     <string name="bot_o_pr_xima_quest_o">Botão Próxima Questão</string>
 
-    <string name="txt_categoria_animais">Você completou a categoria Animais com sucesso.</string>
-    <string name="txt_categoria_alimentos">Você completou a categoria Alimentos com sucesso.</string>
-    <string name="txt_categoria_objetos">Você completou a categoria Objetos com sucesso.</string>
     <string name="digite_o_seu_apelido">Digite o seu apelido</string>
     <string name="salvar">Salvar</string>
     <string name="avatar_usu_rio">Avatar Usuário</string>

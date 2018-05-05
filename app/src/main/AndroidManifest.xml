@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.book.app">
+    package="br.ufms.ladesp.alfabrinque">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
-        android:debuggable="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="HardcodedDebugMode">
         <activity
-            android:name=".MainActivity"
+            android:name="br.ufms.ladesp.alfabrinque.MainActivity"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,29 +23,29 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".EscolherUsuario"
+            android:name="br.ufms.ladesp.alfabrinque.EscolherUsuario"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".OrganizarImagens"
+            android:name="br.ufms.ladesp.alfabrinque.OrganizarImagens"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".swipes.EscolherCategoria"
+            android:name="br.ufms.ladesp.alfabrinque.swipes.EscolherCategoria"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".ResponderQuiz"
+            android:name="br.ufms.ladesp.alfabrinque.ResponderQuiz"
             android:label="@string/title_activity_responder_quiz"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".ui.QuestoesRespondidasSucesso"
+            android:name="br.ufms.ladesp.alfabrinque.ui.QuestoesRespondidasSucesso"
             android:label="@string/title_activity_questoes_respondidas_sucesso"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".ui.TelaAdicionarUsuario"
+            android:name="br.ufms.ladesp.alfabrinque.ui.TelaAdicionarUsuario"
             android:label="@string/title_activity_tela_adicionar_usuario"
             android:screenOrientation="landscape"
             android:theme="@style/Theme.AppCompat.Dialog" />
         <activity
-            android:name=".ui.TelaFeedbackUsuario"
+            android:name="br.ufms.ladesp.alfabrinque.ui.TelaFeedbackUsuario"
             android:label="@string/title_activity_tela_feedback_usuario"
             android:screenOrientation="landscape" />
     </application>

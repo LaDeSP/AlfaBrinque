@@ -9,7 +9,7 @@
     android:gravity="center"
     android:orientation="vertical"
     tools:background="@drawable/teste_grama3"
-    tools:context="com.book.app.ResponderQuiz">
+    tools:context="com.book.app.br.book.app.ResponderQuiz">
 
     <!--android:layout_height="60dp"-->
     <LinearLayout

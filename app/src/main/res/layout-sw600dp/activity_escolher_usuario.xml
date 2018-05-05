@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/escolherUsuarioBG"
     android:orientation="vertical"
-    tools:context="com.book.app.EscolherUsuario">
+    tools:context="com.book.app.br.book.app.EscolherUsuario">
 
     <ImageView
         android:id="@+id/imageView3"
@@ -16,7 +16,7 @@
         android:scaleType="centerCrop"
         android:src="@drawable/frame_tela_usuario" />
 
-    <com.book.app.util.CustomTextView
+    <br.ufms.ladesp.alfabrinque.util.CustomTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -71,7 +71,7 @@
                         android:contentDescription="@string/avatar_1"
                         android:padding="5dp" />
 
-                    <com.book.app.util.CustomTextView
+                    <br.ufms.ladesp.alfabrinque.util.CustomTextView
                         android:id="@+id/txt_usuario1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -100,7 +100,7 @@
                         android:contentDescription="@string/bot_o_adicionar_novo_jogador"
                         android:src="@drawable/ic_add_black_24dp" />
 
-                    <com.book.app.util.CustomTextView
+                    <br.ufms.ladesp.alfabrinque.util.CustomTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -140,7 +140,7 @@
                         android:contentDescription="@string/txt_cd_avatar2"
                         android:padding="5dp" />
 
-                    <com.book.app.util.CustomTextView
+                    <br.ufms.ladesp.alfabrinque.util.CustomTextView
                         android:id="@+id/txt_usuario2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -169,7 +169,7 @@
                         android:contentDescription="@string/bot_o_adicionar_novo_jogador"
                         android:src="@drawable/ic_add_black_24dp" />
 
-                    <com.book.app.util.CustomTextView
+                    <br.ufms.ladesp.alfabrinque.util.CustomTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -210,7 +210,7 @@
                         android:padding="5dp"
                         android:src="@drawable/avatar_1" />
 
-                    <com.book.app.util.CustomTextView
+                    <br.ufms.ladesp.alfabrinque.util.CustomTextView
                         android:id="@+id/txt_usuario3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -239,7 +239,7 @@
                         android:contentDescription="@string/bot_o_adicionar_novo_jogador"
                         android:src="@drawable/ic_add_black_24dp" />
 
-                    <com.book.app.util.CustomTextView
+                    <br.ufms.ladesp.alfabrinque.util.CustomTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"

@@ -8,7 +8,7 @@
     android:fitsSystemWindows="true"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context="com.book.app.ui.QuestoesRespondidasSucesso">
+    tools:context="com.book.app.br.book.app.ui.QuestoesRespondidasSucesso">
 
 
     <com.hanks.htextview.HTextView

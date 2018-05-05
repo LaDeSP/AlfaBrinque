@@ -15,7 +15,7 @@
         android:contentDescription="@string/custom_spinner"
         tools:src="@drawable/avatar_2" />
 
-    <com.book.app.util.CustomTextView
+    <br.ufms.ladesp.alfabrinque.util.CustomTextView
         android:id="@+id/txt_spinner_adapter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

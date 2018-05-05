@@ -12,7 +12,7 @@
         android:contentDescription="@string/imagem_da_categoria_ovelha"
         android:src="@drawable/melancia" />
 
-    <com.book.app.util.CustomTextView
+    <br.ufms.ladesp.alfabrinque.util.CustomTextView
         android:id="@+id/txt_alimentos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

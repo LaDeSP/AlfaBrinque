@@ -12,7 +12,7 @@
         android:contentDescription="@string/imagem_categoria_objetos"
         android:src="@drawable/bola" />
 
-    <com.book.app.util.CustomTextView
+    <br.ufms.ladesp.alfabrinque.util.CustomTextView
         android:id="@+id/txt_objetos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

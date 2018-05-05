@@ -12,7 +12,7 @@
         android:contentDescription="@string/imagem_categoria_animais"
         android:src="@drawable/macaco" />
 
-    <com.book.app.util.CustomTextView
+    <br.ufms.ladesp.alfabrinque.util.CustomTextView
         android:id="@+id/txt_animais"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

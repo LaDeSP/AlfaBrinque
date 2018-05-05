@@ -1,34 +1,40 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 23
+    implementation sdkVersion '23'
     buildToolsVersion '27.0.3'
-
     defaultConfig {
-        applicationId "com.book.app"
+        applicationId "br.ufms.ladesp.alfabrinque"
         minSdkVersion 18
         targetSdkVersion 23
         versionCode 1
-        versionName "1.0"
+        versionName "0.2"
     }
     buildTypes {
+        debug {
+            shrinkResources true
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            shrinkResources true
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            debuggable false
         }
     }
+    compileSdkVersion 23
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:23.4.0'
-    compile 'com.android.support:cardview-v7:23.4.0'
-    compile 'com.android.support:design:23.4.0'
-    compile 'com.android.support:support-v4:23.4.0'
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha4'
-    compile 'tyrantgit:explosionfield:1.0.1'
-    compile 'hanks.xyz:htextview-library:0.1.5'
-    compile 'com.github.amlcurran.showcaseview:library:5.4.3'
-    compile 'com.github.deano2390:MaterialShowcaseView:1.1.0'
-    testCompile 'junit:junit:4.12'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:23.4.0'
+    implementation 'com.android.support:cardview-v7:23.4.0'
+    implementation 'com.android.support:design:23.4.0'
+    implementation 'com.android.support:support-v4:23.4.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.0-alpha4'
+    implementation 'tyrantgit:explosionfield:1.0.1'
+    implementation 'hanks.xyz:htextview-library:0.1.5'
+    implementation 'com.github.amlcurran.showcaseview:library:5.4.3'
+    implementation 'com.github.deano2390:MaterialShowcaseView:1.1.0'
 }
